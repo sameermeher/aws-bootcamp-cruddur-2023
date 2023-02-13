@@ -5,7 +5,7 @@
 ![Billing Alarm](../_docs/assets/week-0/billing-alarm.png)
 2. Set a AWS Budget
 ![AWS Budget](../_docs/assets/week-0/budget-configured.png)
-3. Generatign AWS Credentials: *Yes, I have create a IAM User with "Administrator Access" (AWS Managed Policy attached) and generated Security Credentials*
+3. Generatign AWS Credentials: *Yes, I have created an IAM User with "Administrator Access" (AWS Managed Policy attached) and generated Security Credentials*
 4. Using CloudShell: *Yes. Accessed CloudShell in the AWS Console*
 5. Conceptual Architecture Diagram or your Napkin   
 *Here is the [Public Lucid Chart Link](https://lucid.app/lucidchart/4e93669a-fffc-437b-88a7-cf7c3827d91f/edit?viewport_loc=-212%2C92%2C2368%2C1000%2C0_0&invitationId=inv_673c4483-5400-4c32-b12f-6f752e30b1f3)* - 
