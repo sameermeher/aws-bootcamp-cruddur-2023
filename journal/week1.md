@@ -35,3 +35,37 @@ For this challenge, I changed the Dockerfile of 'backend-flask' into a Multi sta
 ```
 <<TODO>>
 ```
+4. **Launch an EC2 instance that has docker installed, and pull a container to demonstrate you can run your own docker processes**  
+To complete this task, I lauched an EC2 instance (t2.micro), attached a Security Group (with Inbound Rule allowed from source '0.0.0.0/0'). As I wanted the Docker already installed in the lauched EC2 instance, I added the user-data.  
+User Data Code - 
+```
+#! /bin/sh
+yum update -y
+amazon-linux-extras install docker
+service docker start
+usermod -a -G docker ec2-user
+chkconfig docker on
+```  
+Commands to pull Docker image, Run the Container and Test from Browser  
+```
+[ec2-user@ip-172-31-55-147 ~]$ docker pull httpd
+Using default tag: latest
+latest: Pulling from library/httpd
+bb263680fed1: Pull complete 
+9e8776e4b876: Pull complete 
+f506d7aab652: Pull complete 
+05289ee4f284: Pull complete 
+b7f64f2f8747: Pull complete 
+Digest: sha256:db2d897cae2ad67b33435c1a5b0d6b6465137661ea7c01a5e95155f0159e1bcf
+Status: Downloaded newer image for httpd:latest
+docker.io/library/httpd:latest
+[ec2-user@ip-172-31-55-147 ~]$ docker images
+REPOSITORY   TAG       IMAGE ID       CREATED       SIZE
+httpd        latest    3a4ea134cf8e   12 days ago   145MB
+[ec2-user@ip-172-31-55-147 ~]$ docker run -d -p 80:80 --name httpd-container httpd
+5b75e76c9d15924ec58d42287b7f232c7d1b477fc5fffc199aa65be48978bffc
+[ec2-user@ip-172-31-55-147 ~]$ curl http://localhost:80
+<html><body><h1>It works!</h1></body></html>
+[ec2-user@ip-172-31-55-147 ~]$ 
+```
+![Site accessible in browser](../_docs/assets/week-1/docker-ec2-site-browser.png)
