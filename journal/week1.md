@@ -2,7 +2,7 @@
 
 ## Homework Challenges
 1. **Run the dockerfile CMD as an external script**  
-I executed the Dockerfile in backed-flask in my local machine.
+Executed the Dockerfile in "backed-flask" in my local machine.
     ```
     Sameers-MacBook-Air:backend-flask sameermeher$ docker build -t backend-flask-service .
     [+] Building 1.7s (10/10) FINISHED      
@@ -36,7 +36,7 @@ For this challenge, I changed the Dockerfile of 'backend-flask' into a Multi sta
     <<TODO>>
     ```
 4. **Launch an EC2 instance that has docker installed, and pull a container to demonstrate you can run your own docker processes**  
-To complete this task, I lauched an EC2 instance (t2.micro), attached a Security Group (with Inbound Rule allowed from source '0.0.0.0/0'). As I wanted the Docker already installed in the lauched EC2 instance, I added the user-data.  
+To complete this task, I lauched an EC2 instance (t2.micro), attached a Security Group (with Inbound Rule allowed from source '0.0.0.0/0'). As I wanted Docker pre-installed in the lauched EC2 instance, I added the instructions in the user-data.  
 User Data Code - 
     ```
     #! /bin/sh
@@ -46,7 +46,7 @@ User Data Code -
     usermod -a -G docker ec2-user
     chkconfig docker on
     ```  
-    Commands to pull Docker image, Run the Container and Test from Browser  
+    Commands to pull Docker image, Run the Container
     ```
     [ec2-user@ip-172-31-55-147 ~]$ docker pull httpd
     Using default tag: latest
@@ -68,4 +68,5 @@ User Data Code -
     <html><body><h1>It works!</h1></body></html>
     [ec2-user@ip-172-31-55-147 ~]$ 
     ```
+    Able to access the service from Browser  
     ![Site accessible in browser](../_docs/assets/week-1/docker-ec2-site-browser.png)
