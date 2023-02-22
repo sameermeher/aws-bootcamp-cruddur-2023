@@ -70,3 +70,19 @@ User Data Code -
     ```
     Able to access the service from Browser  
     ![Site accessible in browser](../_docs/assets/week-1/docker-ec2-site-browser.png)
+5. **Implement a healthcheck in the V3 Docker compose file**  
+For this challenge, I updated the docker-compose.yml with 'healthcheck' block
+    ```
+    healthcheck:
+    test: curl --fail http://localhost:4567/api/activities/home || exit 1
+    interval: 60s
+    retries: 5
+    start_period: 60s
+    timeout: 10s
+    ``` 
+    For this to work 'curl' needs to be installed in the 'backed-flash' container which can be installed by adding the following command
+    ```
+    RUN apt-get update && apt-get install -y curl
+    ```
+
+
