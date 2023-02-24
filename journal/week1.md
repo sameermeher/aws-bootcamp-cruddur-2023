@@ -1,7 +1,18 @@
 # Week 1 — App Containerization
 
 ## Homework Challenges
-1. **Run the dockerfile CMD as an external script**  
+
+1. **Reduce Docker Image size to 1/3rd**  
+I changed the base image in "frontend-react-js" from "FROM node:16.18" -> "FROM node:16.18-alpine" and could reduce the image size to 1/3rd.  
+```
+FROM node:16.18
+aws-bootcamp-cruddur-2023-frontend-react-js   latest             41b154ba3b97   9 minutes ago    1.23GB  
+```
+```
+FROM node:16.18-alpine
+aws-bootcamp-cruddur-2023-frontend-react-js   latest             df45a97a8c0d   52 seconds ago   434MB  
+```
+2. **Run the dockerfile CMD as an external script**  
 Executed the Dockerfile in "backend-flask" in my local machine.
     ```
     Sameers-MacBook-Air:backend-flask sameermeher$ docker build -t backend-flask-service .
@@ -23,14 +34,14 @@ Executed the Dockerfile in "backend-flask" in my local machine.
     => => writing image sha256:8124e9bed0235041ddf5b2ce0ff1df136313886a52e4ad32274704ba9e853fb4                                                                                                     0.0s
     => => naming to docker.io/library/backend-flask-service                                                                                                                                         0.0s
     ```
-2. **Push and tag a image to DockerHub**  
+3. **Push and tag a image to DockerHub**  
 I already have a account in DockerHub. Tagged and Pushed the backed-flask image into DockerHub
 
     ```
     docker build -t sameerkm/backend-flask-service:1.0 .
     docker push sameerkm/backend-flask-service:1.0
     ```
-3. **Launch an EC2 instance that has docker installed, and pull a container to demonstrate you can run your own docker processes**  
+4. **Launch an EC2 instance that has dockerinstalled, and pull a container to demonstrate you can run your own docker processes**  
 To complete this task, I lauched an EC2 instance (t2.micro), attached a Security Group (with Inbound Rule allowed from source '0.0.0.0/0'). As I wanted Docker pre-installed in the lauched EC2 instance, I added the instructions in the user-data.  
 User Data Code - 
     ```
@@ -65,7 +76,7 @@ User Data Code -
     ```
     Able to access the service from Browser  
     ![Site accessible in browser](../_docs/assets/week-1/docker-ec2-site-browser.png)
-4. **Implement a healthcheck in the V3 Docker compose file**  
+5. **Implement a healthcheck in the V3 Docker compose file**  
 For this challenge, I updated the docker-compose.yml with 'healthcheck' block
     ```
     healthcheck:
@@ -79,5 +90,3 @@ For this challenge, I updated the docker-compose.yml with 'healthcheck' block
     ```
     RUN apt-get update && apt-get install -y curl
     ```
-
-
