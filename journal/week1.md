@@ -2,7 +2,7 @@
 
 ## Homework Challenges
 1. **Run the dockerfile CMD as an external script**  
-Executed the Dockerfile in "backed-flask" in my local machine.
+Executed the Dockerfile in "backend-flask" in my local machine.
     ```
     Sameers-MacBook-Air:backend-flask sameermeher$ docker build -t backend-flask-service .
     [+] Building 1.7s (10/10) FINISHED      
@@ -30,12 +30,7 @@ I already have a account in DockerHub. Tagged and Pushed the backed-flask image 
     docker build -t sameerkm/backend-flask-service:1.0 .
     docker push sameerkm/backend-flask-service:1.0
     ```
-3. **Use multi-stage building for a Dockerfile build**  
-For this challenge, I changed the Dockerfile of 'backend-flask' into a Multi stage build.
-    ```
-    <<TODO>>
-    ```
-4. **Launch an EC2 instance that has docker installed, and pull a container to demonstrate you can run your own docker processes**  
+3. **Launch an EC2 instance that has docker installed, and pull a container to demonstrate you can run your own docker processes**  
 To complete this task, I lauched an EC2 instance (t2.micro), attached a Security Group (with Inbound Rule allowed from source '0.0.0.0/0'). As I wanted Docker pre-installed in the lauched EC2 instance, I added the instructions in the user-data.  
 User Data Code - 
     ```
@@ -70,7 +65,7 @@ User Data Code -
     ```
     Able to access the service from Browser  
     ![Site accessible in browser](../_docs/assets/week-1/docker-ec2-site-browser.png)
-5. **Implement a healthcheck in the V3 Docker compose file**  
+4. **Implement a healthcheck in the V3 Docker compose file**  
 For this challenge, I updated the docker-compose.yml with 'healthcheck' block
     ```
     healthcheck:
