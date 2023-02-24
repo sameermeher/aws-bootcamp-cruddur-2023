@@ -41,6 +41,7 @@ I already have a account in DockerHub. Tagged and Pushed the backed-flask image 
     docker build -t sameerkm/backend-flask-service:1.0 .
     docker push sameerkm/backend-flask-service:1.0
     ```
+    ![Docker Hub](../_docs/assets/week-1/dockerhub-image.png)
 4. **Launch an EC2 instance that has dockerinstalled, and pull a container to demonstrate you can run your own docker processes**  
 To complete this task, I lauched an EC2 instance (t2.micro), attached a Security Group (with Inbound Rule allowed from source '0.0.0.0/0'). As I wanted Docker pre-installed in the lauched EC2 instance, I added the instructions in the user-data.  
 User Data Code - 
