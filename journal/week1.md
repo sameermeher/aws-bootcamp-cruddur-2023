@@ -4,14 +4,14 @@
 
 1. **Reduce Docker Image size to 1/3rd**  
 I changed the base image in "frontend-react-js" from "FROM node:16.18" -> "FROM node:16.18-alpine" and could reduce the image size to 1/3rd.  
-```
-FROM node:16.18
-aws-bootcamp-cruddur-2023-frontend-react-js   latest             41b154ba3b97   9 minutes ago    1.23GB  
-```
-```
-FROM node:16.18-alpine
-aws-bootcamp-cruddur-2023-frontend-react-js   latest             df45a97a8c0d   52 seconds ago   434MB  
-```
+    ```
+    FROM node:16.18
+    aws-bootcamp-cruddur-2023-frontend-react-js   latest             41b154ba3b97   9 minutes ago    1.23GB  
+    ```
+    ```
+    FROM node:16.18-alpine
+    aws-bootcamp-cruddur-2023-frontend-react-js   latest             df45a97a8c0d   52 seconds ago   434MB  
+    ```
 2. **Run the dockerfile CMD as an external script**  
 Executed the Dockerfile in "backend-flask" in my local machine.
     ```
