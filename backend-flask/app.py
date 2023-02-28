@@ -159,6 +159,7 @@ def data_notifications():
 def data_handle(handle):
   model = UserActivities.run(handle)
   if model['errors'] is not None:
+    rollbar.report_message('Missing - User Handle', 'critical')
     return model['errors'], 422
   else:
     return model['data'], 200
@@ -168,6 +169,7 @@ def data_search():
   term = request.args.get('term')
   model = SearchActivities.run(term)
   if model['errors'] is not None:
+    rollbar.report_message('Missing - Search Term', 'error')
     return model['errors'], 422
   else:
     return model['data'], 200
@@ -181,6 +183,7 @@ def data_activities():
   ttl = request.json['ttl']
   model = CreateActivity.run(message, user_handle, ttl)
   if model['errors'] is not None:
+    rollbar.report_message('Failed to save activity', 'critical')
     return model['errors'], 422
   else:
     return model['data'], 200

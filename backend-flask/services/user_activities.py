@@ -8,7 +8,7 @@ class UserActivities:
 
     now = datetime.now(timezone.utc).astimezone()
 
-    if user_handle == None or len(user_handle) < 1:
+    if user_handle == None or len(user_handle) < 3:
       model['errors'] = ['blank_user_handle']
     else:
       now = datetime.now()
