@@ -1,5 +1,6 @@
 import uuid
 import time
+import random
 from datetime import datetime, timedelta, timezone
 from opentelemetry import trace
 
@@ -49,7 +50,9 @@ class CreateActivity:
           'message': message
         }   
       else:
-        time.sleep(1)
+        # Generate a random sleep time between 50 and 500 milliseconds to replicate delay scenario
+        sleep_time = random.randint(50, 500) / 1000
+        time.sleep(sleep_time)
         model['data'] = {
           'uuid': uuid.uuid4(),
           'display_name': 'Andrew Brown',
