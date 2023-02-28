@@ -1,5 +1,5 @@
 import uuid
-#import time
+import time
 from datetime import datetime, timedelta, timezone
 from opentelemetry import trace
 
@@ -49,7 +49,7 @@ class CreateActivity:
           'message': message
         }   
       else:
-        #time.sleep(1)
+        time.sleep(1)
         model['data'] = {
           'uuid': uuid.uuid4(),
           'display_name': 'Andrew Brown',
