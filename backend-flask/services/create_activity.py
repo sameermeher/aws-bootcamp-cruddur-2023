@@ -3,6 +3,7 @@ import time
 import random
 from datetime import datetime, timedelta, timezone
 from opentelemetry import trace
+from aws_xray_sdk.core import xray_recorder
 
 tracer = trace.get_tracer("create.activity")
 
@@ -50,6 +51,9 @@ class CreateActivity:
           'message': message
         }   
       else:
+        # Start Subsegment
+        subsegment = xray_recorder.begin_subsegment("Create Activity")
+
         # Generate a random sleep time between 50 and 500 milliseconds to replicate delay scenario
         sleep_time = random.randint(50, 500) / 1000
         time.sleep(sleep_time)
@@ -61,5 +65,13 @@ class CreateActivity:
           'created_at': now.isoformat(),
           'expires_at': (now + ttl_offset).isoformat()
         }
+
       span.set_attribute("app.user_handle", user_handle)
+      
+      # Capture details into Subsegment
+      subsegment.put_metadata("metadata",{"created_by": user_handle, "display_name": 'Andrew Brown'}, "activity_attributes")
+      subsegment.put_annotation("user_handle", user_handle)
+      # Close Subsegment
+      xray_recorder.end_subsegment()
+
       return model
