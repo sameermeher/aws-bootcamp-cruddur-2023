@@ -1,19 +1,18 @@
 # Week 2 — Distributed Tracing
 
 ## Homework Challenges
-This is best week in terms of learning lot of new tools and trying out 
-1. Distributing Tracing - 
+**This is best week in terms of learning lot of new tools and trying out** 
+1. **Distributing Tracing** - 
    - Honeycomb - Spans and ability to capture custom attributes and build a Dashboard for observability
    - X-Ray - Instrumenting with X-Ray and able to create sub-segments with metadata and annotations
-2. Error Tracing - 
+2. **Error Tracing** - 
    - Rollbar - Ability to capture errors occuring in the application.
-3. CloudWatch Logs -
+3. **CloudWatch Logs** -
    - Logging details of what's happening in the application  
 
 
-
 Details of Homework and Tasks attempted this week -   
-1. **Honeycomb - Instrumentation to adding more custom attributes**  
+1. **HONEYCOMB - Instrumentation to adding more custom attributes**  
     This was a new tool for me but found it most convinient tool w.r.t. Distributed Tracing. It's dead simple :)
 
     Created Spans and multiple sub-spans to trace the route of a request. Example below is with creation of 2 spans-
@@ -45,7 +44,7 @@ Details of Homework and Tasks attempted this week -
     ![Dashboard with Observability](../_docs/assets/week-2/honeycomb/5-dashboard-monitor-observability.png)
     ![Query for Latency Tracking](../_docs/assets/week-2/honeycomb/6-query-latency-by-user-handle.png)
 
-2. **X-Ray - Instrumentation to adding subsegments with metadata and annotations**  
+2. **X-RAY - Instrumentation to adding subsegments with metadata and annotations**  
 
     Wrapped the block for sub-segment instrumentation -
     ![Explicit Delay in Code](../_docs/assets/week-2/x-ray/0-delay-added-in-code-sleep.png)
@@ -54,13 +53,13 @@ Details of Homework and Tasks attempted this week -
     Able to use subsegment by adding metadata and annotations (which could be useful to write to query against it)
     ![Subsegments with Metadata](../_docs/assets/week-2/x-ray/2-traces-subsegment-with-metadata-annotations.png)
 
-3. **CloudWatch Logs**  
+3. **CLOUDWATCH Logs**  
     Added logs in the code to be captured in CloudWatch logs.
     ![Log Streams](../_docs/assets/week-2/cloudwatch-logs/1-log-streams.png)
 
     ![Logs](../_docs/assets/week-2/cloudwatch-logs/2-logs.png)
 
-4. **Rollbar - Error Tracking**  
+4. **ROLLBAR - Error Tracking**  
     For Rollbar I experimented for real time scenarios with issues while invoking API becuause of wrong input or missing input and ability to capture those errors in Rollbar.
     Here is the screenshot from the codebase and then from rollbar where I could capture those scenarios.
     ![Code - Report Error](../_docs/assets/week-2/rollbar/1-rollbar-reporterrors.png)
