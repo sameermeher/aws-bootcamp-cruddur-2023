@@ -8,20 +8,47 @@ This is best week in terms of learning lot of new tools and trying out
 2. Error Tracing - 
    - Rollbar - Ability to capture errors occuring in the application.
 3. CloudWatch Logs -
-   - Logging details of what's happening in the application   
+   - Logging details of what's happening in the application  
 
 
-1. **Reduce Docker Image size to 1/3rd**  
-I changed the base image in "frontend-react-js" from "FROM node:16.18" -> "FROM node:16.18-alpine" and could reduce the image size to 1/3rd.  
+
+Details of Homework and Tasks attempted this week -   
+1. **Honeycomb - Instrumentation to adding more custom attributes**  
+    This was a new tool for me but found it most convinient tool w.r.t. Distributed Tracing. It's dead simple :)
+
+    Created Spans and multiple sub-spans to trace the route of a request. Example below is with creation of 2 spans -
+    ![Spans](../_docs/assets/week-2/honeycomb/1-spans.png)
+    ![Multiple Spans](../_docs/assets/week-2/honeycomb/2-multiple-spans.png)
+
+    For adding extra spans with custom attributes, I selected "Create Activity" action wherein, logged-in User could add posts which intiates "Create Activity" action/api in the background.
     ```
-    FROM node:16.18
-    aws-bootcamp-cruddur-2023-frontend-react-js   latest             41b154ba3b97   9 minutes ago    1.23GB  
+    now = datetime.now(timezone.utc).astimezone()
+    # Adding a extra attributes to current span
+    span = trace.get_current_span()
+    span.set_attribute("app.now", now.isoformat())
+
+    span.set_attribute("app.user_handle", user_handle)
+
     ```
+    ![Traces for Create Activity](../_docs/assets/week-2/honeycomb/4-trace-for-create-activity.png)
+
+    ![Custome Attributes](../_docs/assets/week-2/honeycomb/3-trace-with-custom-attributes.png)
+
+    In addition to creating and saving the query, there as a option to create a Dashboard and add query into it for better observability.
+    As we don't have database integration as of now I intentionally added delay with sleep command (while Creating Activity in create_activity.py file)
     ```
-    FROM node:16.18-alpine
-    aws-bootcamp-cruddur-2023-frontend-react-js   latest             df45a97a8c0d   52 seconds ago   434MB  
+    # Generate a random sleep time between 50 and 500 milliseconds to replicate delay scenario
+    sleep_time = random.randint(50, 500) / 1000
+    time.sleep(sleep_time)
     ```
-2. **Run the dockerfile CMD as an external script**  
+    ![Dashboard with Observability](../_docs/assets/week-2/honeycomb/5-dashboard-monitor-observability.png)
+    ![Query for Latency Tracking](../_docs/assets/week-2/honeycomb/6-query-latency-by-user-handle.png)
+
+2. **X-Ray - Instrumentation to adding subsegments with metadata and annotations**  
+
+    ![Explicit Delay in Code](../_docs/assets/week-2/x-ray/0-delay-added-in-code-sleep.png)
+    ![Trackes](../_docs/assets/week-2/x-ray/1-traces.png)
+    ![Subsegments with Metadata](../_docs/assets/week-2/x-ray/2-traces-subsegment-with-metadata-annotations.png)
 For this task I created an external python script with commands in CMD with file name "run_commands.py"  
 Content of run_commands.py file  
     ```
@@ -45,15 +72,22 @@ Content of run_commands.py file
     ```
     docker build -t backend:v2 -f Dockerfile2 .
     ```
-3. **Push and tag a image to DockerHub**  
+3. **CloudWatch Logs**  
+
+    ![Log Streams](../_docs/assets/week-2/cloudwatch-logs/1-log-streams.png)
+    ![Logs](../_docs/assets/week-2/cloudwatch-logs/2-logs.png)
+
 I already have a account in DockerHub. Tagged and Pushed the backed-flask image into DockerHub
 
     ```
     docker build -t sameerkm/backend-flask-service:1.0 .
     docker push sameerkm/backend-flask-service:1.0
     ```
-    ![Docker Hub](../_docs/assets/week-1/dockerhub-image.png)
-4. **Launch an EC2 instance that has dockerinstalled, and pull a container to demonstrate you can run your own docker processes**  
+4. **Rollbar - Error Tracking**  
+
+    ![Code - Report Error](../_docs/assets/week-2/rollbar/1-rollbar-reporterrors.png)
+    ![Errors Tracked](../_docs/assets/week-2/rollbar/2-error-tracked-in-rollbar.png)
+
 To complete this task, I lauched an EC2 instance (t2.micro), attached a Security Group (with Inbound Rule allowed from source '0.0.0.0/0'). As I wanted Docker pre-installed in the lauched EC2 instance, I added the instructions in the user-data.  
 User Data Code - 
     ```
