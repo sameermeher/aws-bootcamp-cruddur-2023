@@ -46,32 +46,13 @@ Details of Homework and Tasks attempted this week -
 
 2. **X-Ray - Instrumentation to adding subsegments with metadata and annotations**  
 
+    Wrapped the block for sub-segment instrumentation -
     ![Explicit Delay in Code](../_docs/assets/week-2/x-ray/0-delay-added-in-code-sleep.png)
+    Generated traces -
     ![Trackes](../_docs/assets/week-2/x-ray/1-traces.png)
+    Able to use subsegment by adding metadata and annotations (which could be useful to write to query against it)
     ![Subsegments with Metadata](../_docs/assets/week-2/x-ray/2-traces-subsegment-with-metadata-annotations.png)
-For this task I created an external python script with commands in CMD with file name "run_commands.py"  
-Content of run_commands.py file  
-    ```
-    #!/usr/bin/env python
 
-    import subprocess
-
-    # Replace these commands with the ones specified in your Dockerfile CMD line
-    commands = ["python3", "-m" , "flask", "run", "--host=0.0.0.0", "--port=4567"]
-
-    # Execute the commands
-    for command in commands:
-        subprocess.run(command, shell=True)
-    ```
-    Created a separate Dockerfile as "Dockerfile2" for demo  and updated ONLY the last line to execute the python script  
-    ```
-    # Set the command to execute the script
-    CMD ["python", "run_commands.py"]
-    ```
-    and build the image using the command  
-    ```
-    docker build -t backend:v2 -f Dockerfile2 .
-    ```
 3. **CloudWatch Logs**  
 
     ![Log Streams](../_docs/assets/week-2/cloudwatch-logs/1-log-streams.png)
