@@ -54,16 +54,11 @@ Details of Homework and Tasks attempted this week -
     ![Subsegments with Metadata](../_docs/assets/week-2/x-ray/2-traces-subsegment-with-metadata-annotations.png)
 
 3. **CloudWatch Logs**  
-
+    Added logs in the code to be captured in CloudWatch logs.
     ![Log Streams](../_docs/assets/week-2/cloudwatch-logs/1-log-streams.png)
+
     ![Logs](../_docs/assets/week-2/cloudwatch-logs/2-logs.png)
 
-I already have a account in DockerHub. Tagged and Pushed the backed-flask image into DockerHub
-
-    ```
-    docker build -t sameerkm/backend-flask-service:1.0 .
-    docker push sameerkm/backend-flask-service:1.0
-    ```
 4. **Rollbar - Error Tracking**  
 
     ![Code - Report Error](../_docs/assets/week-2/rollbar/1-rollbar-reporterrors.png)
