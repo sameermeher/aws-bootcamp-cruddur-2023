@@ -16,8 +16,9 @@ Details of Homework and Tasks attempted this week -
 1. **Honeycomb - Instrumentation to adding more custom attributes**  
     This was a new tool for me but found it most convinient tool w.r.t. Distributed Tracing. It's dead simple :)
 
-    Created Spans and multiple sub-spans to trace the route of a request. Example below is with creation of 2 spans -
+    Created Spans and multiple sub-spans to trace the route of a request. Example below is with creation of 2 spans-
     ![Spans](../_docs/assets/week-2/honeycomb/1-spans.png)
+    Recent Traces captured -
     ![Multiple Spans](../_docs/assets/week-2/honeycomb/2-multiple-spans.png)
 
     For adding extra spans with custom attributes, I selected "Create Activity" action wherein, logged-in User could add posts which intiates "Create Activity" action/api in the background.
@@ -60,55 +61,8 @@ Details of Homework and Tasks attempted this week -
     ![Logs](../_docs/assets/week-2/cloudwatch-logs/2-logs.png)
 
 4. **Rollbar - Error Tracking**  
-
+    For Rollbar I experimented for real time scenarios with issues while invoking API becuause of wrong input or missing input and ability to capture those errors in Rollbar.
+    Here is the screenshot from the codebase and then from rollbar where I could capture those scenarios.
     ![Code - Report Error](../_docs/assets/week-2/rollbar/1-rollbar-reporterrors.png)
-    ![Errors Tracked](../_docs/assets/week-2/rollbar/2-error-tracked-in-rollbar.png)
 
-To complete this task, I lauched an EC2 instance (t2.micro), attached a Security Group (with Inbound Rule allowed from source '0.0.0.0/0'). As I wanted Docker pre-installed in the lauched EC2 instance, I added the instructions in the user-data.  
-User Data Code - 
-    ```
-    #! /bin/sh
-    yum update -y
-    amazon-linux-extras install docker
-    service docker start
-    usermod -a -G docker ec2-user
-    chkconfig docker on
-    ```  
-    Commands to pull Docker image, Run the Container
-    ```
-    [ec2-user@ip-172-31-55-147 ~]$ docker pull httpd
-    Using default tag: latest
-    latest: Pulling from library/httpd
-    bb263680fed1: Pull complete 
-    9e8776e4b876: Pull complete 
-    f506d7aab652: Pull complete 
-    05289ee4f284: Pull complete 
-    b7f64f2f8747: Pull complete 
-    Digest: sha256:db2d897cae2ad67b33435c1a5b0d6b6465137661ea7c01a5e95155f0159e1bcf
-    Status: Downloaded newer image for httpd:latest
-    docker.io/library/httpd:latest
-    [ec2-user@ip-172-31-55-147 ~]$ docker images
-    REPOSITORY   TAG       IMAGE ID       CREATED       SIZE
-    httpd        latest    3a4ea134cf8e   12 days ago   145MB
-    [ec2-user@ip-172-31-55-147 ~]$ docker run -d -p 80:80 --name httpd-container httpd
-    5b75e76c9d15924ec58d42287b7f232c7d1b477fc5fffc199aa65be48978bffc
-    [ec2-user@ip-172-31-55-147 ~]$ curl http://localhost:80
-    <html><body><h1>It works!</h1></body></html>
-    [ec2-user@ip-172-31-55-147 ~]$ 
-    ```
-    Able to access the service from Browser  
-    ![Site accessible in browser](../_docs/assets/week-1/docker-ec2-site-browser.png)
-5. **Implement a healthcheck in the V3 Docker compose file**  
-For this challenge, I updated the docker-compose.yml with 'healthcheck' block
-    ```
-    healthcheck:
-    test: curl --fail http://localhost:4567/api/activities/home || exit 1
-    interval: 60s
-    retries: 5
-    start_period: 60s
-    timeout: 10s
-    ``` 
-    For this to work 'curl' needs to be installed in the 'backed-flash' container which can be installed by adding the following command
-    ```
-    RUN apt-get update && apt-get install -y curl
-    ```
+    ![Errors Tracked](../_docs/assets/week-2/rollbar/2-error-tracked-in-rollbar.png)
