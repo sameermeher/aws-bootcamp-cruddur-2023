@@ -5,7 +5,7 @@
 1. Watched the Live Video stream during the session completed upto a stage wherin integration of JWT token started. Continued working on the code after re-watching the complete video.
 2. Executed following to force permanant password verification. 
     ```
-    aws cognito-idp admin-set-user-password --username andrewbrown --password Testing123! --user-pool-id us-east-1_3JGbT8JTD --permanent
+    aws cognito-idp admin-set-user-password --username <username> --password <password> --user-pool-id <user-pool-id> --permanent
     ```
 3. Integrated API calls to Amazon Cognito for - 
     * Custom SignIn Page
