@@ -20,8 +20,11 @@
 5. Created VPC Endpoint to avoid accessing DynamoDB over Internet.
    ![VPC EndPoint](../_docs/assets/week-5/vpc-endpoint.png)
 
-5. Created the Lambda function for DynamoDB scream for messaging
+6. Created the Lambda function for DynamoDB scream for messaging
    ![Lambda](../_docs/assets/week-5/lambda-function.png)
 
-6. Created the Trigger in DynamoDB to execute the Lambda Function   
+7. Created the Trigger in DynamoDB to execute the Lambda Function   
    ![DynamoDB Trigger](../_docs/assets/week-5/dynamodb-trigger.png)
+
+8. Items created in DynamoDB table    
+   ![DynamoDB Items](../_docs/assets/week-5/dynamodb-items.png)
