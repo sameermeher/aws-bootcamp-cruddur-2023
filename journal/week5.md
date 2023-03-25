@@ -28,3 +28,8 @@
 
 8. Items created in DynamoDB table    
    ![DynamoDB Items](../_docs/assets/week-5/dynamodb-items.png)
+
+9. Messages and Group Messages creation in Cruddur App
+   ![Messages](../_docs/assets/week-5/messages-1.png)
+
+   ![Group Messages](../_docs/assets/week-5/group_messages.png)
